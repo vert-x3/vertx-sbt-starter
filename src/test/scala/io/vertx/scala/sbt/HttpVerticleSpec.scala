@@ -2,9 +2,7 @@ package io.vertx.scala.sbt
 
 import org.scalatest.Matchers
 
-import scala.concurrent.duration._
-import scala.concurrent.{Await, Promise}
-import scala.util.{Failure, Success}
+import scala.concurrent.Promise
 
 class HttpVerticleSpec extends VerticleTesting[HttpVerticle] with Matchers {
 
