@@ -9,7 +9,7 @@ import scala.util.{Failure, Success}
 class HttpVerticle extends ScalaVerticle {
 
 
-  override def start(): Future[Unit] = {
+  override def startFuture(): Future[Unit] = {
     //Create a router to answer GET-requests to "/hello" with "world"
     val router = Router.router(vertx)
     val route = router

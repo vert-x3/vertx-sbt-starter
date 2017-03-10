@@ -7,7 +7,7 @@ import scala.util.{Failure, Success}
 
 class BusVerticle extends ScalaVerticle {
 
-  override def start(): Future[Unit] = {
+  override def startFuture(): Future[Unit] = {
     vertx
       .eventBus()
       .consumer[String]("testAddress")
