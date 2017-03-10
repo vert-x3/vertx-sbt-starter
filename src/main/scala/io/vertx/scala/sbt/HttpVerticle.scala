@@ -3,8 +3,7 @@ package io.vertx.scala.sbt
 import io.vertx.lang.scala.ScalaVerticle
 import io.vertx.scala.ext.web.Router
 
-import scala.concurrent.{Future, Promise}
-import scala.util.{Failure, Success}
+import scala.concurrent.Future
 
 class HttpVerticle extends ScalaVerticle {
 
@@ -14,12 +13,12 @@ class HttpVerticle extends ScalaVerticle {
     val router = Router.router(vertx)
     val route = router
       .get("/hello")
-        .handler(_.response().end("world"))
+      .handler(_.response().end("world"))
 
     vertx
       .createHttpServer()
       .requestHandler(router.accept)
       .listenFuture(8666, "0.0.0.0")
-        .map(_ => ())
+      .map(_ => ())
   }
 }

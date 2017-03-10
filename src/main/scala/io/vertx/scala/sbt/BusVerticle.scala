@@ -2,8 +2,7 @@ package io.vertx.scala.sbt
 
 import io.vertx.lang.scala.ScalaVerticle
 
-import scala.concurrent.{Future, Promise}
-import scala.util.{Failure, Success}
+import scala.concurrent.Future
 
 class BusVerticle extends ScalaVerticle {
 
