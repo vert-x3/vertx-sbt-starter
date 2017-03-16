@@ -2,7 +2,7 @@ This is a quickstart for a Vert.x Scala project. It provides a few examples for 
 unit-tests.
 
 It comes with vertx-core and vertx-web so you are good to go for a little REST-project.
-Take your time and take  a look 
+Take your time and take a look 
 
 #Scala console
 After launching _sbt_ you can switch to the _scala--console. There we took care that you
@@ -11,7 +11,7 @@ play around in sbt
 ```
 sbt
 > console
-scala> vertx.deployVerticle(s"scala:${classOf[HttpVerticle].getName}")
+scala> vertx.deployVerticle(nameForVerticle[HttpVerticle])
 scala> vertx.deploymentIDs
 ```
 

@@ -7,9 +7,6 @@ object Build extends AutoPlugin {
 
   override def projectSettings =
     Vector(
-      resolvers ++= Vector(
-        "Sonatype SNAPSHOTS" at "https://oss.sonatype.org/content/repositories/snapshots/"
-      ),
       scalaVersion := Version.Scala,
       scalacOptions ++= Vector(
         "-unchecked",
@@ -22,6 +19,7 @@ object Build extends AutoPlugin {
       unmanagedSourceDirectories in Compile := Vector(scalaSource.in(Compile).value),
       unmanagedSourceDirectories in Test := Vector(scalaSource.in(Test).value),
       initialCommands in console := """|import io.vertx.lang.scala._
+                                       |import io.vertx.lang.scala.ScalaVerticle.nameForVerticle
                                        |import io.vertx.scala.core._
                                        |import io.vertx.scala.sbt._
                                        |import scala.concurrent.Future
