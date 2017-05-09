@@ -1,8 +1,7 @@
 import sbt.{Def, _}
-import sbtassembly.AssemblyPlugin.autoImport.{MergeStrategy, assemblyMergeStrategy}
+import sbtassembly.AssemblyPlugin.autoImport.{MergeStrategy, assembly, assemblyMergeStrategy}
 import sbtassembly.{AssemblyPlugin, PathList}
 import Keys._
-import sbtassembly.AssemblyKeys._
 
 object Build extends AutoPlugin {
 
