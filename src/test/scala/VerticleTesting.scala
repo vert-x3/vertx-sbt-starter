@@ -1,5 +1,3 @@
-package io.vertx.scala.sbt
-
 import io.vertx.lang.scala.json.{Json, JsonObject}
 import io.vertx.lang.scala.{ScalaVerticle, VertxExecutionContext}
 import io.vertx.scala.core.{DeploymentOptions, Vertx}

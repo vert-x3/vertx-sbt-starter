@@ -34,7 +34,6 @@ object Build extends AutoPlugin {
       initialCommands in console := """|import io.vertx.lang.scala._
                                        |import io.vertx.lang.scala.ScalaVerticle.nameForVerticle
                                        |import io.vertx.scala.core._
-                                       |import io.vertx.scala.sbt._
                                        |import scala.concurrent.Future
                                        |import scala.concurrent.Promise
                                        |import scala.util.Success

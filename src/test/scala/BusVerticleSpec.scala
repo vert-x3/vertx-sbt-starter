@@ -1,5 +1,3 @@
-package io.vertx.scala.sbt
-
 import org.scalatest._
 
 class BusVerticleSpec extends VerticleTesting[BusVerticle] with Matchers {

@@ -1,5 +1,3 @@
-package io.vertx.scala.sbt
-
 import org.scalatest.Matchers
 
 import scala.concurrent.Promise

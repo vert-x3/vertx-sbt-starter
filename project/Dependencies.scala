@@ -12,5 +12,4 @@ object Library {
   val vertxHazelcast = "io.vertx"       %% "vertx-hazelcast"        % Version.Vertx
   val vertxWeb       = "io.vertx"       %% "vertx-web-scala"        % Version.Vertx
   val scalaTest      = "org.scalatest"  %% "scalatest"              % Version.ScalaTest
-
 }
