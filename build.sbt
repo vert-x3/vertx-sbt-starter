@@ -9,9 +9,13 @@ exposedPorts := Seq(8666)
 
 libraryDependencies ++= Vector (
   Library.vertxLangScala,
-  Library.vertxCodegen,
   Library.vertxWeb,
-  Library.scalaTest       % "test"
+  Library.scalaTest       % "test",
+  // Uncomment for clustering
+  // Library.vertxHazelcast,
+
+  //required to get rid of some warnings emitted by the scala-compile
+  Library.vertxCodegen
 )
 
 packageOptions += ManifestAttributes(
