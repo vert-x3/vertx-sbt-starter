@@ -1,13 +1,27 @@
-import sbt.Keys._
-import sbt._
+import sbt.{Def, _}
+import sbtassembly.AssemblyPlugin.autoImport.{MergeStrategy, assemblyMergeStrategy}
+import sbtassembly.{AssemblyPlugin, PathList}
+import Keys._
+import sbtassembly.AssemblyKeys._
 
 object Build extends AutoPlugin {
 
   override def trigger = allRequirements
 
-  override def projectSettings =
+  override def requires: Plugins = AssemblyPlugin
+
+  override def projectSettings: Seq[Def.Setting[_]] =
     Vector(
       scalaVersion := Version.Scala,
+      assemblyMergeStrategy in assembly := {
+        case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
+        case PathList("META-INF", xs @ _*) => MergeStrategy.last
+        case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.last
+        case PathList("codegen.json") => MergeStrategy.discard
+        case x =>
+          val oldStrategy = (assemblyMergeStrategy in assembly).value
+          oldStrategy(x)
+      },
       scalacOptions ++= Vector(
         "-unchecked",
         "-deprecation",

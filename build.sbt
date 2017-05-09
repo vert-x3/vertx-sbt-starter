@@ -15,16 +15,6 @@ libraryDependencies ++= Vector (
 packageOptions += ManifestAttributes(
   ("Main-Verticle", "scala:io.vertx.scala.sbt.HttpVerticle"))
 
-assemblyMergeStrategy in assembly := {
-  case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
-  case PathList("META-INF", xs @ _*) => MergeStrategy.last
-  case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.last
-  case PathList("codegen.json") => MergeStrategy.discard
-  case x =>
-    val oldStrategy = (assemblyMergeStrategy in assembly).value
-    oldStrategy(x)
-}
-
 dockerfile in docker := {
   // The assembly task generates a fat JAR file
   val artifact: File = assembly.value
