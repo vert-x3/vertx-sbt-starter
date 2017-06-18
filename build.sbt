@@ -6,8 +6,6 @@ scalaVersion := "2.12.1"
 
 enablePlugins(DockerPlugin)
 exposedPorts := Seq(8666)
-resolvers +=
-  "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 libraryDependencies ++= Vector (
   Library.vertx_lang_scala,
