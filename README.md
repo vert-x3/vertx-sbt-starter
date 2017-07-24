@@ -4,7 +4,8 @@ unit-tests.
 It comes with vertx-core and vertx-web so you are good to go for a little REST-project.
 Take your time and take a look 
 
-#Vert.x-Modules
+# Vert.x-Modules
+
 There is a list of available modules maintained in *project/Dependencies.scala*. Simply add the appropriate
 entry to *build.sbt* to use one of the modules.
 Here is an example with an added *vertx-hazelcast* dependency for clustering.
@@ -19,7 +20,8 @@ libraryDependencies ++= Vector (
 ```
 
 
-#Scala console
+# Scala console
+
 After launching _sbt_ you can switch to the _scala--console. There we took care that you
 get an already initialized Vert.x-instance and the necessary imports to start playing around.
 play around in sbt
@@ -33,7 +35,8 @@ scala> vertx.deploymentIDs
 From here you can freely interact with the Vertx-API inside the sbt-scala-shell.
 
 
-#Fat-jar
+# Fat-jar
+
 Take a look at the _build.sbt_ and search for the entry _packageOptions_. Enter the fully qualified class name 
 of your primary verticle. This will be used as entry point for a generated fat-jar.
 
@@ -42,8 +45,8 @@ To create the runnable fat-jar use:
 sbt assembly
 ```
 
+# Dockerize
 
-#Dockerize
 The project also contains everything you need to create a Docker-container. Most config is done in
 *project/Docker.scala*. The only thing you have to do is keep the following line in *build.sbt*:
 ```
