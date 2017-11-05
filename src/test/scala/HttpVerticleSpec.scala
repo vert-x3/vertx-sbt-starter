@@ -8,13 +8,13 @@ import scala.concurrent.Promise
 class HttpVerticleSpec extends VerticleTesting[HttpVerticle] with Matchers with ScalaFutures {
   import HttpVerticle._
 
-  "HttpVerticle" should "bind to 8666 and answer with 'world'" in {
+  "HttpVerticle" should s"bind to 8666 and answer with '$response'" in {
     val promise = Promise[String]
 
     vertx.createHttpClient
-      .getNow(8666, "127.0.0.1", HttpVerticle.routePath,
+      .getNow(8666, "127.0.0.1", routePath,
         httpClientResponse => {
-          httpClientResponse.exceptionHandler(promise.failure) // complete promise with failure
+          httpClientResponse.exceptionHandler(promise.failure)                       // complete promise with failure
           httpClientResponse.bodyHandler(buffer => promise.success(buffer.toString)) // complete promise with success
         }
       )
