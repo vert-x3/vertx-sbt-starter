@@ -10,9 +10,9 @@ object BusVerticle {
 class BusVerticle extends ScalaVerticle {
   override def startFuture(): Future[Unit] = {
     vertx
-      .eventBus()
+      .eventBus
       .consumer[String](BusVerticle.testAddress)
       .handler(_.reply(BusVerticle.replyMessage))
-      .completionFuture()
+      .completionFuture
   }
 }
