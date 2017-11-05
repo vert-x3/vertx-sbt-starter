@@ -13,17 +13,18 @@ abstract class VerticleTesting[A <: ScalaVerticle: TypeTag] extends AsyncFlatSpe
   implicit val vertxExecutionContext: VertxExecutionContext = VertxExecutionContext(vertx.getOrCreateContext)
 
   private var deploymentId = ""
+  private val duration: Duration = Duration.Inf // good value for testing, bad value for production
 
   before {
-    val aTypeName: String = implicitly[TypeTag[A]].tpe.typeSymbol.fullName
+    val aTypeName: String = implicitly[TypeTag[A]].tpe.typeSymbol.fullName  // "BusVerticle"
     deploymentId = Await.result(
       vertx
         .deployVerticleFuture(s"scala:$aTypeName", DeploymentOptions().setConfig(Json.emptyObj))
         .andThen {
-          case Success(d) => d
-          case Failure(throwable) => throw new RuntimeException(throwable)
+          case Success(d) => d // typical value: 2115d175-e724-4f2a-aaa6-2dadbf733370
+          case Failure(throwable) => throw throwable
         },
-      10000 millis
+      duration
     )
   }
 
@@ -32,9 +33,9 @@ abstract class VerticleTesting[A <: ScalaVerticle: TypeTag] extends AsyncFlatSpe
       vertx.undeployFuture(deploymentId)
         .andThen {
           case Success(d) => d
-          case Failure(throwable) => throw new RuntimeException(throwable)
+          case Failure(throwable) => throw throwable
         },
-      10000 millis
+      duration
     )
   }
 }

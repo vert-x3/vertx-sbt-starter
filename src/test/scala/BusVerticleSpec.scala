@@ -14,6 +14,6 @@ class BusVerticleSpec extends VerticleTesting[BusVerticle] with Matchers with Sc
         .eventBus
         .sendFuture("testAddress", "msg")
 
-    whenReady(future.map(_.body)) { _ shouldBe BusVerticle.replyMessage }
+    whenReady(future) { _.body shouldBe BusVerticle.replyMessage }
   }
 }
