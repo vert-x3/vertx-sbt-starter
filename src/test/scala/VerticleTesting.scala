@@ -9,10 +9,10 @@ import scala.reflect.runtime.universe._
 import scala.util.{Failure, Success}
 
 abstract class VerticleTesting[A <: ScalaVerticle: TypeTag] extends AsyncFlatSpec with BeforeAndAfter {
-  val vertx: Vertx = Vertx.vertx
-  implicit val vertxExecutionContext: VertxExecutionContext = VertxExecutionContext(vertx.getOrCreateContext)
+  protected val vertx: Vertx = Vertx.vertx
+  implicit protected val vertxExecutionContext: VertxExecutionContext = VertxExecutionContext(vertx.getOrCreateContext)
 
-  private var deploymentId = ""
+  private var deploymentId: String = ""
   private val duration: Duration = Duration.Inf // good value for testing, bad value for production
 
   before {
@@ -21,7 +21,7 @@ abstract class VerticleTesting[A <: ScalaVerticle: TypeTag] extends AsyncFlatSpe
       vertx
         .deployVerticleFuture(s"scala:$aTypeName", DeploymentOptions().setConfig(Json.emptyObj))
         .andThen {
-          case Success(d) => d // typical value: 2115d175-e724-4f2a-aaa6-2dadbf733370
+          case Success(id) => id   // typical value: 2115d175-e724-4f2a-aaa6-2dadbf733370
           case Failure(throwable) => throw throwable
         },
       duration
@@ -29,10 +29,11 @@ abstract class VerticleTesting[A <: ScalaVerticle: TypeTag] extends AsyncFlatSpe
   }
 
   after {
-    Await.result(
-      vertx.undeployFuture(deploymentId)
+    Await.ready(
+      vertx
+        .undeployFuture(deploymentId)
         .andThen {
-          case Success(d) => d
+          case Success(unit) => unit
           case Failure(throwable) => throw throwable
         },
       duration

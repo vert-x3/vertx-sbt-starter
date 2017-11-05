@@ -8,18 +8,24 @@ object HttpVerticle {
 }
 
 class HttpVerticle extends ScalaVerticle {
+  import HttpVerticle._
+
   override def startFuture(): Future[Unit] = {
     // Create a router to answer GET-requests to "/hello" with "world"
     val router = Router.router(vertx)
 
-    val route: Route = router   // unclear how this value is picked up
-      .get(HttpVerticle.routePath)
-      .handler(_.response.end(HttpVerticle.response))
+    val route: Route = router       // unclear how this value is picked up
+      .get(routePath)
+      .handler(_.response.end(response))
 
     vertx
       .createHttpServer()
       .requestHandler(router.accept(_))
-      .listenFuture(8666, "0.0.0.0")
-      .map(println)
+      .listenFuture(8666, "0.0.0.0")    // listen in promiscuous mode
+      .map { httpServer =>
+        println(s"""httpServer.isMetricsEnabled: ${ httpServer.isMetricsEnabled }
+                    |httpServer connected on port: ${ httpServer.actualPort }
+                    |""".stripMargin)
+      }
   }
 }

@@ -1,19 +1,20 @@
 import io.vertx.scala.core.eventbus.Message
-import scala.concurrent.Future
+import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.concurrent.ScalaFutures
-import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-
+import scala.concurrent.Future
 
 @RunWith(classOf[JUnitRunner])
 class BusVerticleSpec extends VerticleTesting[BusVerticle] with Matchers with ScalaFutures {
+  import BusVerticle._
+
   "BusVerticle" should "reply to a message" in {
     val future: Future[Message[String]] =
       vertx
         .eventBus
-        .sendFuture("testAddress", "msg")
+        .sendFuture(testAddress, testMessage)
 
-    whenReady(future) { _.body shouldBe BusVerticle.replyMessage }
+    whenReady(future) { _.body shouldBe replyMessage }
   }
 }
