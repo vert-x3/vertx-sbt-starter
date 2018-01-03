@@ -1,13 +1,13 @@
 import sbt._
 
 object Version {
-  final val Scala = "2.12.1"
-  final val ScalaTest = "3.0.1"
-  final val Vertx = "3.4.2"
+  final val Scala     = "2.12.4"
+  final val ScalaTest = "3.0.3"
+  final val Vertx     = "3.4.2"
 }
 
 object Library {
-  val vertx_codegen                     = "io.vertx" % "vertx-codegen"                            % Version.Vertx % "provided"
+  val vertx_codegen                     = "io.vertx" % "vertx-codegen"                            % Version.Vertx % Provided
   val vertx_lang_scala                  = "io.vertx" %% "vertx-lang-scala"                        % Version.Vertx
   val vertx_hazelcast                   = "io.vertx" %  "vertx-hazelcast"                         % Version.Vertx
   val vertx_web                         = "io.vertx" %% "vertx-web-scala"                         % Version.Vertx
@@ -57,5 +57,6 @@ object Library {
   val vertx_config_zookeeper            = "io.vertx" %% "vertx-config-zookeeper-scala"            % Version.Vertx
 
   //non-vert.x deps
-  val scalaTest                         = "org.scalatest" %% "scalatest" % Version.ScalaTest
+  val scalaTest                         = "org.scalatest" %% "scalatest" % Version.ScalaTest % Test
+  val junit                             = "junit"         %  "junit"     % "4.12"             % Test
 }
