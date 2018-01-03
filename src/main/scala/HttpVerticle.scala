@@ -10,11 +10,11 @@ object HttpVerticle {
 class HttpVerticle extends ScalaVerticle {
   import HttpVerticle._
 
-  override def startFuture(): Future[Unit] = {
+  override def startFuture(): Future[_] = {
     // Create a router to answer GET-requests to "/hello" with "world"
     val router = Router.router(vertx)
 
-    val route: Route = router       // unclear how this value is picked up
+    val route: Route = router       // used in requestHandler below
       .get(routePath)
       .handler(_.response.end(response))
 

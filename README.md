@@ -1,3 +1,10 @@
+# PLEASE USE OUR G8-QUICKSTART INSTEAD OF THIS PROJECT
+``` 
+sbt new vert-x3/vertx-scala.g8
+``` 
+
+# This is our old quickstart (still maintained but not as up to date as the g8)
+
 This is a quickstart for a Vert.x Scala project. 
 It provides a few sample unit tests.
 
